@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import SearchBarNative from './Search/Search-native';
 import DataSetList from './DatasetList/DataSetList'
+import { View, StyleSheet } from "react-native";
 
 import {Login} from "./pages/Login"
 import Layout from "./components/Layout";
@@ -82,19 +83,21 @@ function App() {
       })
     })
   }
+
   return (
     <div>
-      <header>
-        <img src={"VTB.png"} height={"100%"} />
-      </header>
-      <SearchBarNative/>
-      {/* Part for Ignat */}
-      {/* <Layout>
-        <AppRouter/>
-      </Layout> */}
-
-      <DataSetList dataSetArr={DataSetArr} 
-      selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
+      <div className="header">
+          <img src={"VTB.png"} height={"100%"}/>
+          <SearchBarNative/>
+      </div>
+          {/* Part for Ignat */}
+          {/* <Layout>
+            <AppRouter/>
+          </Layout> */}
+      <div className="mainbody">
+          <DataSetList dataSetArr={DataSetArr} 
+          selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
+      </div>
     </div>
   );
 }

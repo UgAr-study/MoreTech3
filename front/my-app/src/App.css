@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  display: flex;
+  height: 200px;
+  overflow-x: scroll;
+  background: #0B1D37;
+}
+
+.header .searchbar {
+  text-align: center;
+  padding-top: 50px;
+  margin-left: 400;
+  width: 500;
+}
