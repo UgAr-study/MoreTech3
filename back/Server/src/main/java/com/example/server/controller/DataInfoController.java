@@ -32,8 +32,14 @@ public class DataInfoController {
     }
 
     @GetMapping(value = "/index/{id}")
-    public ResponseEntity<DataInfo> getById(@PathVariable(name = "id") int id) {
+    public ResponseEntity<DataInfo> getById(@RequestParam(value = "name", required = false) String name, @PathVariable(name = "id") int id) {
         DataInfo dataInfo = dataInfoService.read(id);
+
+        if (name != null && !name.isEmpty()) {
+            System.out.println("[" + name + "]");
+        } else {
+            System.out.println("No name provided");
+        }
 
         return dataInfo != null
                 ? new ResponseEntity<>(dataInfo, HttpStatus.OK)
