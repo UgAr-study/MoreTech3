@@ -3,9 +3,11 @@ package com.example.server.service;
 import com.example.server.models.DataInfo;
 import com.example.server.repository.DataInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DataInfoServiceImpl implements DataInfoService{
 
     @Autowired
