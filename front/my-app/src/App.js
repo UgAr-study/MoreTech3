@@ -4,10 +4,8 @@ import SearchBarNative from './Search/Search-native';
 import DataSetList from './DatasetList/DataSetList'
 import { View, StyleSheet } from "react-native";
 
-import {Login} from "./pages/Login"
 import Layout from "./components/Layout";
 import {AppRouter} from "./components/AppRouter";
-
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -89,6 +87,7 @@ function App() {
 
   return (
     <div>
+      {/* Header */}
       <div className="header">
           <img src={"VTB.png"} height={"100%"}/>
           <SearchBarNative/>
@@ -96,10 +95,13 @@ function App() {
             <Navbar />
           </Router>
       </div>
-          {/* Part for Ignat */}
-          {/* <Layout>
-            <AppRouter/>
-          </Layout> */}
+
+      {/* Auth */}
+      <Layout>
+        <AppRouter/>
+      </Layout>
+
+      {/* Dataset array */}
       <div className="mainbody">
           <DataSetList dataSetArr={DataSetArr} 
           selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>

@@ -1,22 +1,22 @@
-import Home from "../pages/Home";
-import Testing from "../pages/Testing";
-import {Login} from "../pages/Login";
+import AllDatasetsPage from "../pages/AllDatasetsPage";
+import MyDatasetsPage from "../pages/MyDatasetsPage";
+import {LoginPage} from "../pages/LoginPage";
 
 
 export const privateRoutes=[
     {
-        path:'/', exact:true, component:Home
+        path:'/', exact:true, component:AllDatasetsPage
     },
     {
-        path:'/test', exact:true, component:Testing
+        path:'/profile', exact:true, component:MyDatasetsPage
     },
 ]
 
 export const publicRoutes=[
     {
-        path:'/', exact:true, component:Home
+        path:'/', exact:true, component:AllDatasetsPage
     },
     {
-        path:'/login', exact:true, component:Login
+        path:'/login', exact:true, component:LoginPage
     },
 ]

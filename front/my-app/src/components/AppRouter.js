@@ -3,8 +3,8 @@ import {Switch,Redirect,Route} from 'react-router-dom'
 import {privateRoutes, publicRoutes} from "../routes";
 import {useSelector} from "react-redux";
 import {useIsAuth} from "../context/AuthContextProvider";
-export const AppRouter = () => {
 
+export const AppRouter = () => {
     const {isAuth}=useIsAuth()
     return (
         isAuth ?

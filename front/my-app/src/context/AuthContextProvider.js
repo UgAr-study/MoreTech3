@@ -16,6 +16,4 @@ export const AuthContextProvider = ({children}) => {
     );
 };
 
-
-
 export const useIsAuth=() => useContext(AuthContext)
