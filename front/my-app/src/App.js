@@ -16,13 +16,29 @@ function App() {
     isSelected: false
   }]);
 
-  function sex() {
+  // const [selectedFeatures, setSelectedFeatures] = React.useState([{ id: 0, name: "f1", isSelected: false, 
+  //                                                                 idDataset: [0] }, 
+  //                                                                 { id: 1, name: "f2", isSelected: false, 
+  //                                                                 idDataset: [1]}]); 
+
+  function selectDataset(id) {
   setDataSet(DataSetArr.map(dataset => {
-    console.log("Kek");
-    dataset.isSelected = !dataset.isSelected;
+      if (dataset.id === id) {
+        console.log("Dataset with Id:" + id + "selected");
+        dataset.isSelected = !dataset.isSelected; 
+      }
       return dataset;
     }));
-    console.log(DataSetArr[0].isSelected);
+  }
+
+  function selectFeatures(fName) {
+    DataSetArr.map(ds => {
+      ds.features.map(f => {
+        if (f.name == fName) {
+          f.isSelected = !f.isSelected;
+        } 
+      })
+    })
   }
 
   return (
