@@ -45,9 +45,10 @@ function App() {
   function selectFeatures(fName) {
     DataSetArr.map(ds => {
       ds.features.map(f => {
-        if (f.name == fName) {
+        if (f.name === fName) {
           f.isSelected = !f.isSelected;
-        } 
+        }
+        return f;
       })
     })
   }

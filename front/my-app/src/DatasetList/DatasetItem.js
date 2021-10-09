@@ -11,16 +11,17 @@ function DatasetItem({dataset, selectDatasetFunc, selectFeaturesFunc, getMarginL
     } else {
         classes.push('headerBeforeSelect')
     }
-    let myMarginLeft = String(getMarginLeft(dataset.id)) + 'px';
+    let myMarginLeft = String(getMarginLeft()) + 'px';
     let liStyle = { 
         marginLeft: myMarginLeft
     };
     return(
         <li style={liStyle}>
-            <description>{dataset.description}</description>
+            <span className={"description"}>{dataset.description}</span>
             <img className={"dataset"} onClick={() => selectDatasetFunc(dataset.id)}></img>
             <img className={classes.join(' ')} onClick={() => selectDatasetFunc(dataset.id)}></img>
-            <fs><FeaturesItem selectFeaturesFunc={selectFeaturesFunc} dataset={dataset} fName={dataset.features[0].name}/></fs>
+            <FeaturesItem selectFeaturesFunc={selectFeaturesFunc} dataset={dataset} fName={dataset.features[0].name} 
+                          getMarginTop={() => { return (dataset.features[0].id * 350 + 100);}}/>
         </li>
     )
 }
