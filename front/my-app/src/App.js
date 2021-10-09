@@ -37,7 +37,7 @@ function App() {
   }
   return (
     <div>
-      <SearchBarNative/>
+      {/* <SearchBarNative/> */}
       <DataSetList dataSetArr={DataSetArr} selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
       <input type="checkbox"  
       onChange={() => {

@@ -14,15 +14,17 @@ code {
 
 .item {
   /* Item */
-
-  position: absolute;
+  /* Position is relative because it's parent object*/
+  margin: 20px 20px;
+  position: relative;
   width: 486.25px;
   height: 544px;
 }
 
 .description {
   /* Description */
-
+  /* Position is absolute because it's child object*/
+  margin: 0px 0px;
   position: absolute;
   width: 486.25px;
   height: 544px;
@@ -34,7 +36,8 @@ code {
 
 .imageBeforeSelect {
   /* Image */
-
+  /* Position is absolute because it's child object*/
+  margin: 0px 0px;
   position: absolute;
   width: 486.25px;
   height: 231.65px;
@@ -45,7 +48,8 @@ code {
 
 .imageAfterSelect {
   /* Image */
-
+/* Position is absolute because it's child object*/
+  margin: 0px 0px;
   position: absolute;
   width: 486.25px;
   height: 231.65px;
@@ -69,17 +73,6 @@ code {
   color: #1C2C57;
 
   transform: matrix(1, 0, 0, 1, 0, 0);
-}
-
-.select {
-  position: absolute;
-  width: 39.37px;
-  height: 41.93px;
-
-  /* Light web/Text/Secondary */
-
-  background: #626F84;
-
 }
 
 .done {
