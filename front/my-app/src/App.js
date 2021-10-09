@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-
+import SearchBarNative from './Search/Search-native';
+import DataSetList from './DatasetList/DataSetList'
 
 function App() {
 
@@ -15,11 +15,6 @@ function App() {
     id: 0,
     isSelected: false
   }]);
-
-  // const [selectedFeatures, setSelectedFeatures] = React.useState([{ id: 0, name: "f1", isSelected: false, 
-  //                                                                 idDataset: [0] }, 
-  //                                                                 { id: 1, name: "f2", isSelected: false, 
-  //                                                                 idDataset: [1]}]); 
 
   function selectDataset(id) {
   setDataSet(DataSetArr.map(dataset => {
@@ -40,11 +35,16 @@ function App() {
       })
     })
   }
-
   return (
     <div>
-      <input type="checkbox" 
-      onChange={() => sex()}/>
+      <SearchBarNative/>
+      <DataSetList dataSetArr={DataSetArr} selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
+      <input type="checkbox"  
+      onChange={() => {
+        return (
+          <div></div>
+        );
+      }}/>
     </div>
   );
 }
