@@ -1,49 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types"
 import FeaturesItem from "./FeaturesItem";
+import { Text } from "react-native-paper";
 
-const styles = {
-    li: {
-        display: "flex",
-        justifyContent: "space-between",
-        alingItems: "center",
-        padding: ".5rem 1rem",
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        margin: ".5rem"
-    },
-    input: {
-        marginRight: "1rem"
-    }
+function MapFeatures({dataset, selectFeaturesFunc}) {
+    dataset.features.map(feature => {
+        return (
+            <FeaturesItem selectFeaturesFunc={selectFeaturesFunc} dataset={dataset} fName={dataset.features[0].name} 
+                          getMarginTop={() => { return (dataset.features[0].id * 350 + 100);}}/>
+        );
+    });
 }
 
-const divStyle = {
-    margin: '1px'
-};
-function DatasetItem({dataset, selectDatasetFunc, selectFeaturesFunc, getMarginLeft}) {
-
+function DatasetItem({dataset, selectDatasetFunc, selectFeaturesFunc, getMargin}) {
     const classes = []
 
     if (dataset.isSelected) {
-        classes.push('imageAfterSelect')
+        classes.push('headerAfterSelect')
     } else {
-        classes.push('imageBeforeSelect')
+        classes.push('headerBeforeSelect')
     }
-    let marginLeft = getMarginLeft();
-    console.log("MarginLeft = " + marginLeft);
+    let myMarginLeft = String(getMargin().left) + 'px';
+    let myMarginTop = String(getMargin().top) + 'px';
+    let divStyle = { 
+        marginLeft: myMarginLeft,
+        marginTop: myMarginTop,
+        width: '0px',
+        height: '0px'
+    };
+    console.log(dataset.id);
+    console.log(divStyle);
+
     return(
-        <li >
-            <div style={divStyle}>
-            <img className={"description"} onClick={() => selectDatasetFunc(dataset.id)}></img>
+        <div style={divStyle}>
+            <span className={"description"}>{dataset.description}</span> 
+            <span>&nbsp;</span>
+            <img className={"dataset"} onClick={() => selectDatasetFunc(dataset.id)}></img>
             <img className={classes.join(' ')} onClick={() => selectDatasetFunc(dataset.id)}></img>
-            <h2>
-                <title>word-wrap</title>
-                {dataset.description}
-            </h2>
-            <fs><FeaturesItem selectFeaturesFunc={selectFeaturesFunc} dataset={dataset} fName={dataset.features[0].name}/></fs>
-            {/* {dataset.description} */}
-            </div>
-        </li>
+        </div>
     )
 }
 

@@ -2,21 +2,21 @@ import React from "react";
 import DatasetItem from "./DatasetItem"
 import PropTypes from "prop-types"
 
-const styles = {
-    ul: {
-        listStyle: 'none',
-        margin: 0,
-        padding: 0
-    }
-}
-
 function DatasetList(props) {
     return(
-        <ul style={styles.ul}>
+        <ul style={{liftStyle: 'none'}}>
             {
                 props.dataSetArr.map(ds => {
                     return <DatasetItem dataset={ds} key={ds.id} selectDatasetFunc={props.selectDatasetFunc} 
-                                     selectFeaturesFunc={props.selectFeaturesFunc} getMarginLeft={() => { return (ds.id * 100 + 100);}}/>
+                            selectFeaturesFunc={props.selectFeaturesFunc} getMargin={() => { 
+                                let value = {
+                                    left: 0, top: 0
+                                };
+                                value.left = Math.floor((ds.id * 350 + 100) % 1050);
+                                value.top = ((ds.id * 350 + 100) - value.left) / 1050;
+                                value.top *= 350;
+                                return value;
+                            }}/>
                 })
             }
         </ul>
