@@ -8,6 +8,9 @@ import {Login} from "./pages/Login"
 import Layout from "./components/Layout";
 import {AppRouter} from "./components/AppRouter";
 
+import Navbar from './components/NavBar/index';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 function App() {
 
   const [DataSetArr, setDataSet] = React.useState([
@@ -89,6 +92,9 @@ function App() {
       <div className="header">
           <img src={"VTB.png"} height={"100%"}/>
           <SearchBarNative/>
+          <Router>
+            <Navbar />
+          </Router>
       </div>
           {/* Part for Ignat */}
           {/* <Layout>
