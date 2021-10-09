@@ -8,6 +8,14 @@ import Layout from "./components/Layout";
 import {AppRouter} from "./components/AppRouter";
 import Navbar from './components/NavBar/index';
 import { BrowserRouter as Router } from 'react-router-dom';
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink
+} from './components/NavBar/NavBarElements';
 
 function App() {
 
@@ -89,11 +97,26 @@ function App() {
     <div>
       {/* Header */}
       <div className="header">
-          <img src={"VTB.png"} height={"100%"}/>
-          <SearchBarNative/>
+          <img className="logo" src={"VTB.png"} height={"50%"}/>
+          
+
           <Router>
             <Navbar />
           </Router>
+          
+          <div className="right-col">
+            <div className="sign">
+              <NavBtn>
+                <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+              </NavBtn>
+              <NavLink to='/sign-up' activeStyle>
+                Sign Up
+              </NavLink>
+            </div>
+            
+            <SearchBarNative/>
+          </div>
+          
       </div>
 
       {/* Auth */}
