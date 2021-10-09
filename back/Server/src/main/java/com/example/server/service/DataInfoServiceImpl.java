@@ -25,7 +25,7 @@ public class DataInfoServiceImpl implements DataInfoService{
 
     @Override
     public DataInfo read(int id) {
-        return dataInfoRepository.getById(id);
+        return dataInfoRepository.findById(id).get();
     }
 
     @Override
