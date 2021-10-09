@@ -17,7 +17,10 @@ const styles = {
     }
 }
 
-function DatasetItem({dataset, selectDatasetFunc, selectFeaturesFunc}) {
+const divStyle = {
+    margin: '1px'
+};
+function DatasetItem({dataset, selectDatasetFunc, selectFeaturesFunc, getMarginLeft}) {
 
     const classes = []
 
@@ -26,9 +29,11 @@ function DatasetItem({dataset, selectDatasetFunc, selectFeaturesFunc}) {
     } else {
         classes.push('imageBeforeSelect')
     }
-
+    let marginLeft = getMarginLeft();
+    console.log("MarginLeft = " + marginLeft);
     return(
         <li >
+            <div style={divStyle}>
             <img className={"description"} onClick={() => selectDatasetFunc(dataset.id)}></img>
             <img className={classes.join(' ')} onClick={() => selectDatasetFunc(dataset.id)}></img>
             <h2>
@@ -37,8 +42,7 @@ function DatasetItem({dataset, selectDatasetFunc, selectFeaturesFunc}) {
             </h2>
             <fs><FeaturesItem selectFeaturesFunc={selectFeaturesFunc} dataset={dataset} fName={dataset.features[0].name}/></fs>
             {/* {dataset.description} */}
-
-            {/* <button className="rm">&times;</button> */}
+            </div>
         </li>
     )
 }

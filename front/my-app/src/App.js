@@ -5,16 +5,28 @@ import DataSetList from './DatasetList/DataSetList'
 
 function App() {
 
-  const [DataSetArr, setDataSet] = React.useState([{
-    description: 'desc',
-    name: 'name',
-    features: [
-      { id: 0, name: "f1", isSelected: false },
-      { id: 1, name: "f2", isSelected: false }
-    ],
-    id: 0,
-    isSelected: false
-  }]);
+  const [DataSetArr, setDataSet] = React.useState([
+    {
+      description: 'desc1',
+      name: 'name1',
+      features: [
+        { id: 0, name: "f1", isSelected: false },
+        { id: 1, name: "f2", isSelected: false }
+      ],
+      id: 0,
+      isSelected: false
+    },
+    {
+      description: 'desc2',
+      name: 'name2',
+      features: [
+        { id: 0, name: "f3", isSelected: false },
+        { id: 1, name: "f2", isSelected: false }
+      ],
+      id: 1,
+      isSelected: false
+    }
+  ]);
 
   function selectDataset(id) {
   setDataSet(DataSetArr.map(dataset => {
@@ -37,7 +49,7 @@ function App() {
   }
   return (
     <div>
-      {/* <SearchBarNative/> */}
+      <SearchBarNative/>
       <DataSetList dataSetArr={DataSetArr} selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
       <input type="checkbox"  
       onChange={() => {
