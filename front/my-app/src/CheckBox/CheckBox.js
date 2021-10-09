@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Checkbox, Collapse } from 'antd';
+import { Checkbox, Collapse, Row, Col  } from 'antd';
 
 const { Panel } = Collapse
 
@@ -60,22 +60,41 @@ function CheckBox(props) {
 
     const renderCheckboxLists = () => list && list.map((value, index) => (
         <React.Fragment key={index}>
+        <Checkbox.Group style={{ width: '120px'}} onChange={() => handleToggle(value)}>
+            <Row>
             <Checkbox
                 onChange={() => handleToggle(value)}
-                type="checkbox"
                 checked={Checked.indexOf(value._id) === -1 ? false : true}
-            />&nbsp;&nbsp;
-            <span>{value.name}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            />
+            {/* <Col span={8}>
+                <Checkbox value="A">A</Checkbox>
+            </Col>
+            <Col span={8}>
+                <Checkbox value="B">B</Checkbox>
+            </Col>
+            <Col span={8}>
+                <Checkbox value="C">C</Checkbox>
+            </Col>
+            <Col span={8}>
+                <Checkbox value="D">D</Checkbox>
+            </Col>
+            <Col span={8}>
+                <Checkbox value="E">E</Checkbox>
+            </Col> */}
+            <span>{value.name}</span>
+            </Row>
+        </Checkbox.Group>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </React.Fragment>
     ))
 
     return (
-        <div>
-            <Collapse defaultActiveKey={['0']} >
-                <Panel header="Fuetures" key="1">
-                    {renderCheckboxLists()}
-                </Panel>
-            </Collapse>
+        <div className="forfilters">
+                <Collapse defaultActiveKey={['0']}  >
+                    <Panel header="Features" key="1">
+                        {renderCheckboxLists()}
+                    </Panel>
+                </Collapse>
         </div>
     )
 } 

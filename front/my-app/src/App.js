@@ -205,11 +205,11 @@ function App() {
       <Layout>
         <AppRouter/>
       </Layout>
-      <CheckBox dataSetArr={allDataSetArr}  handleFilters={updateDataSetArr}/>
       {/* Dataset array */}
       <div className="mainbody">
           <DataSetList dataSetArr={DataSetArr} 
           selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
+          <CheckBox dataSetArr={allDataSetArr}  handleFilters={updateDataSetArr}/>
       </div>
     </div>
   );
