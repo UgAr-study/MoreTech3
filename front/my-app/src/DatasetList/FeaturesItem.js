@@ -8,7 +8,6 @@ function FeaturesItem(props) {
     function checkSelected(fName) {
         props.dataset.features.map(f => {
             if (f.name === fName) {
-                console.log(f.isSelected)
                 return f.isSelected;
             }
         })
@@ -19,9 +18,7 @@ function FeaturesItem(props) {
     } else {
         classesImg.push('fItemBefore')
     }
-
     classesText.push('fItemText')
-
 
     let myMarginTop = String(props.getMarginTop()) + 'px';
     let liStyle = { 
@@ -29,8 +26,11 @@ function FeaturesItem(props) {
     };
 
     return(
-        <li >
-            <img className={classesImg.join(' ')} onClick={() => {props.selectFeaturesFunc(props.fName);}}></img>
+        <li>
+            <img className={classesImg.join(' ')} onClick={() => {
+                props.selectFeaturesFunc(props.fName);
+                console.log('aaa'); // not working
+            }}></img>
             <span className={classesText.join(' ')} >{props.fName}</span>
         </li>
     )
