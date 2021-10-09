@@ -16,6 +16,8 @@ import {
   NavBtn,
   NavBtnLink
 } from './components/NavBar/NavBarElements';
+import CheckBox from './CheckBox/CheckBox';
+
 
 function App() {
 
@@ -72,6 +74,86 @@ function App() {
     }
   ]);
 
+
+  const [allDataSetArr, setAllDataSet] = React.useState([
+    {
+      description: 'desc1',
+      name: 'name1',
+      features: [
+        { id: 0, name: "f1", isSelected: false },
+        { id: 1, name: "f2", isSelected: false }
+      ],
+      id: 0,
+      isSelected: false
+    },
+    {
+      description: 'desc2',
+      name: 'name2',
+      features: [
+        { id: 0, name: "f3", isSelected: false },
+        { id: 1, name: "f2", isSelected: false }
+      ],
+      id: 1,
+      isSelected: false
+    },
+    {
+      description: 'desc3',
+      name: 'name3',
+      features: [
+        { id: 0, name: "f3", isSelected: false },
+        { id: 1, name: "f1", isSelected: false }
+      ],
+      id: 2,
+      isSelected: true
+    },
+    {
+      description: 'desc4',
+      name: 'name4',
+      features: [
+        { id: 0, name: "f2", isSelected: false },
+        { id: 1, name: "f1", isSelected: false }
+      ],
+      id: 3,
+      isSelected: false
+    },
+    {
+      description: 'desc5',
+      name: 'name5',
+      features: [
+        { id: 0, name: "f1", isSelected: false },
+        { id: 1, name: "f3", isSelected: false }
+      ],
+      id: 4,
+      isSelected: false
+    }
+  ]);
+
+  function updateDataSetArr(list) {
+    if (list.length === 0) {
+      setDataSet(allDataSetArr);
+      return
+    }
+    console.log("list");
+    console.log(list);
+
+    var newDataSetArr = []
+    DataSetArr.map(dataset => {
+      dataset.features.map(fds => {
+        list.map(f => {
+          if (fds.name === f.name) {
+            newDataSetArr.push(dataset)
+            return f;
+          }
+        })
+        return fds;
+      })
+      return dataset;
+    })
+    console.log("New Ds");
+    console.log(newDataSetArr);
+    setDataSet(newDataSetArr);
+  }
+
   function selectDataset(id) {
   setDataSet(DataSetArr.map(dataset => {
       if (dataset.id === id) {
@@ -123,7 +205,7 @@ function App() {
       <Layout>
         <AppRouter/>
       </Layout>
-
+      <CheckBox dataSetArr={allDataSetArr}  handleFilters={updateDataSetArr}/>
       {/* Dataset array */}
       <div className="mainbody">
           <DataSetList dataSetArr={DataSetArr} 
