@@ -11,3 +11,115 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.item {
+  /* Item */
+
+  position: absolute;
+  width: 486.25px;
+  height: 544px;
+}
+
+.description {
+  /* Description */
+
+  position: absolute;
+  width: 486.25px;
+  height: 544px;
+
+  background: #FFFFFF;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 38px;
+}
+
+.imageBeforeSelect {
+  /* Image */
+
+  position: absolute;
+  width: 486.25px;
+  height: 231.65px;
+
+  background: rgba(167, 188, 240, 0.75);
+  border-radius: 38px 38px 0px 0px;
+}
+
+.imageAfterSelect {
+  /* Image */
+
+  position: absolute;
+  width: 486.25px;
+  height: 231.65px;
+
+  background: rgba(230, 102, 17, 0.75);
+  border-radius: 38px 38px 0px 0px;
+}
+
+  /* ВТБ */
+.vtb {
+  position: absolute;
+  width: 98.43px;
+  height: 51.36px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 45px;
+  line-height: 53px;
+
+  color: #1C2C57;
+
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.select {
+  position: absolute;
+  width: 39.37px;
+  height: 41.93px;
+
+  /* Light web/Text/Secondary */
+
+  background: #626F84;
+
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+h2 {
+	position	: absolute;
+	top		: 10px;
+	left		: 50px;
+  width: 40%; 
+  padding: 10px; 
+  font-size: 1.5em; 
+  word-wrap: break-word; 
+}
+
+fs {
+  position	: absolute;
+	top		: 250px;
+	left		: 50px;
+}
+
+.fItemBefore {
+  position: absolute;
+  width: 81px;
+  height: 26px;
+
+  background: #FFFFFF;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background: rgba(169, 188, 240, 0.75);
+  border-radius: 38px;
+}
+
+.fItemAfter {
+  position: absolute;
+  width: 81px;
+  height: 26px;
+
+  background: #FFFFFF;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background: rgba(238, 115, 15, 0.75);
+  border-radius: 38px;
+}
