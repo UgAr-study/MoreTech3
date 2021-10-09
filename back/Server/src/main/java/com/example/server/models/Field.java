@@ -1,13 +1,14 @@
 package com.example.server.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+import java.io.Serializable;
+import java.util.List;
+
+@Data
 @AllArgsConstructor
-@Getter
-@Setter
-public class Field {
+public class Field implements Serializable {
     private String name;
-    private String type;
+    private List<String> type;
 }
