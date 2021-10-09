@@ -17,42 +17,42 @@ code {
   /* Position is relative because it's parent object*/
   margin: 20px 20px;
   position: relative;
-  width: 486.25px;
-  height: 544px;
+  width: 300.25px;
+  height: 300px;
 }
 
-.description {
+.dataset {
   /* Description */
   /* Position is absolute because it's child object*/
   margin: 0px 0px;
   position: absolute;
-  width: 486.25px;
-  height: 544px;
+  width: 300.25px;
+  height: 300px;
 
   background: #FFFFFF;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 38px;
 }
 
-.imageBeforeSelect {
+.headerBeforeSelect {
   /* Image */
   /* Position is absolute because it's child object*/
   margin: 0px 0px;
   position: absolute;
-  width: 486.25px;
-  height: 231.65px;
+  width: 300.25px;
+  height: 120.65px;
 
   background: rgba(167, 188, 240, 0.75);
   border-radius: 38px 38px 0px 0px;
 }
 
-.imageAfterSelect {
+.headerAfterSelect {
   /* Image */
   /* Position is absolute because it's child object*/
   margin: 0px 0px;
   position: absolute;
-  width: 486.25px;
-  height: 231.65px;
+  width: 300.25px;
+  height: 120.65px;
 
   background: rgba(230, 102, 17, 0.75);
   border-radius: 38px 38px 0px 0px;
@@ -75,12 +75,9 @@ code {
   transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
-.done {
-  text-decoration: line-through;
-}
-
-h2 {
-	position	: absolute;
+.description {
+  margin: -40px 0px;
+	/* position	: absolute; */
 	top		: 10px;
 	left		: 50px;
   width: 40%; 
@@ -89,7 +86,7 @@ h2 {
   word-wrap: break-word; 
 }
 
-fs {
+.fs {
   position	: absolute;
 	top		: 250px;
 	left		: 50px;

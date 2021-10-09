@@ -21,8 +21,8 @@ function FeaturesItem(props) {
 
     return(
         <li >
-        <img className={classes.join(' ')} onClick={() => {props.selectFeaturesFunc(props.fName);}}></img>
-    </li>
+            <img className={classes.join(' ')} onClick={() => {props.selectFeaturesFunc(props.fName);}}></img>
+        </li>
     )
 }
 

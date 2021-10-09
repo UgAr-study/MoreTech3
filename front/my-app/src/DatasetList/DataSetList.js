@@ -5,7 +5,6 @@ import PropTypes from "prop-types"
 const styles = {
     ul: {
         listStyle: 'none',
-        margin: 0,
         padding: 0
     }
 }
@@ -16,7 +15,7 @@ function DatasetList(props) {
             {
                 props.dataSetArr.map(ds => {
                     return <DatasetItem dataset={ds} key={ds.id} selectDatasetFunc={props.selectDatasetFunc} 
-                                     selectFeaturesFunc={props.selectFeaturesFunc} getMarginLeft={() => { return (ds.id * 100 + 100);}}/>
+                                     selectFeaturesFunc={props.selectFeaturesFunc} getMarginLeft={() => { return (ds.id * 350 + 100);}}/>
                 })
             }
         </ul>
