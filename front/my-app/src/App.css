@@ -39,14 +39,36 @@
 
 .header {
   display: flex;
+  flex-wrap: wrap;
+  position: relative;
   height: 200px;
-  overflow-x: scroll;
   background: #0B1D37;
+  border: 1px solid #61dafb;
 }
 
+.header .logo {
+  /* position: absolute;
+  top: 0px;
+  left: 0px; */
+}
+
+.header .right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: auto;
+}
 .header .searchbar {
-  text-align: center;
-  padding-top: 50px;
-  margin-left: 400;
-  width: 500;
+  align-self: flex-end;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  /*padding-left: 900px;*/ 
+}
+
+.header .sign {
+  display: flex;
+  /* align-self: flex-start; */
+  /* margin-right: auto; */
+  padding-top: 20px;
+  padding-right: 0px; 
 }

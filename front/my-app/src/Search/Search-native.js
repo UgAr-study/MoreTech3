@@ -9,27 +9,18 @@ const SearchBarNative = () => {
 
   const onChangeSearch = query => setSearchQuery(query);
 
-  const styles = StyleSheet.create({
-    searchbar:{
-      textAlign:'center',
-      paddingTop: 30,
-      marginLeft: 800,
-      //marginTop: 30,
-      width: 500,
-      justifyContent: 'space-between',
-    },
-  });
-
   return (
-    <View className="searchbar">
-      <Card>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        />
-      </Card> 
-    </View>
+    <div className="searchbar">
+      <View >
+        <Card>
+          <Searchbar
+            placeholder="Search"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+          />
+        </Card> 
+      </View>
+    </div>
   );
 };
 
