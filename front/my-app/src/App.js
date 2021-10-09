@@ -3,6 +3,10 @@ import React from 'react';
 import SearchBarNative from './Search/Search-native';
 import DataSetList from './DatasetList/DataSetList'
 
+import {Login} from "./pages/Login"
+import Layout from "./components/Layout";
+import {AppRouter} from "./components/AppRouter";
+
 function App() {
 
   const [DataSetArr, setDataSet] = React.useState([
@@ -41,22 +45,23 @@ function App() {
   function selectFeatures(fName) {
     DataSetArr.map(ds => {
       ds.features.map(f => {
-        if (f.name == fName) {
+        if (f.name === fName) {
           f.isSelected = !f.isSelected;
-        } 
+        }
+        return f;
       })
     })
   }
   return (
     <div>
+      
       <SearchBarNative/>
+      {/* Part for Ignat */}
+      {/* <Layout>
+        <AppRouter/>
+      </Layout> */}
+
       <DataSetList dataSetArr={DataSetArr} selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
-      <input type="checkbox"  
-      onChange={() => {
-        return (
-          <div></div>
-        );
-      }}/>
     </div>
   );
 }

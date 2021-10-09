@@ -2,6 +2,7 @@ package com.example.server.controller;
 
 import com.example.server.models.DataInfo;
 import com.example.server.service.DataInfoService;
+import com.example.server.service.FieldParseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ public class DataInfoController {
 
     @Autowired
     private DataInfoService dataInfoService;
+
+    //@Autowired
+    //private FieldParseService fieldParseService;
 
     @PostMapping(value = "/index")
     public ResponseEntity<?> create (@RequestBody DataInfo dataInfo) {
@@ -32,14 +36,8 @@ public class DataInfoController {
     }
 
     @GetMapping(value = "/index/{id}")
-    public ResponseEntity<DataInfo> getById(@RequestParam(value = "name", required = false) String name, @PathVariable(name = "id") int id) {
+    public ResponseEntity<DataInfo> getById(@PathVariable(name = "id") int id) {
         DataInfo dataInfo = dataInfoService.read(id);
-
-        if (name != null && !name.isEmpty()) {
-            System.out.println("[" + name + "]");
-        } else {
-            System.out.println("No name provided");
-        }
 
         return dataInfo != null
                 ? new ResponseEntity<>(dataInfo, HttpStatus.OK)
