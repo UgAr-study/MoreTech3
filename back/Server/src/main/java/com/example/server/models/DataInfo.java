@@ -18,12 +18,15 @@ public class DataInfo {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "path")
-    private String path;
+    @Column(name = "type")
+    private String type;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "namespace")
+    private String namespace;
 
-    @Column(name = "features")
-    private String features;
+    @Column(name = "doc")
+    private String doc;
+
+    @Column(name = "fields")
+    private String fields;
 }
