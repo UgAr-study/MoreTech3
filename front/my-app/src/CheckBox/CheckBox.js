@@ -36,17 +36,24 @@ function CheckBox(props) {
 
     const handleToggle = (value) => {
 
-        const currentIndex = Checked.indexOf(value);
+        var curFeat = [];
+
+        const currentIndex = Checked.indexOf(value._id);
         const newChecked = [...Checked];
 
         if (currentIndex === -1) {
-            newChecked.push(value)
+            newChecked.push(value._id)
+            curFeat.push(value)
         } else {
             newChecked.splice(currentIndex, 1)
+            curFeat.splice(currentIndex, 1)
         }
 
+        console.log("Update");
+        console.log(newChecked);
+
         setChecked(newChecked)
-        // props.handleFilters(newChecked)
+        props.handleFilters(curFeat)
         //update this checked information into Parent Component 
 
     }
@@ -54,7 +61,7 @@ function CheckBox(props) {
     const renderCheckboxLists = () => list && list.map((value, index) => (
         <React.Fragment key={index}>
             <Checkbox
-                onChange={() => handleToggle(value._id)}
+                onChange={() => handleToggle(value)}
                 type="checkbox"
                 checked={Checked.indexOf(value._id) === -1 ? false : true}
             />&nbsp;&nbsp;
