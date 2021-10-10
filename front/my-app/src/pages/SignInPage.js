@@ -9,8 +9,10 @@ import {logIn} from "../redux/actions/authAction";
 import {useIsAuth} from "../context/AuthContextProvider";
 import {useState} from "react";
 
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
+
 const SignInPage = () => {
-  const {setIsAuth} = useIsAuth()
+  const {isAuth, setIsAuth}=useIsAuth()
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +31,12 @@ const SignInPage = () => {
       alert("Wrong username/password! Please try again.")
     }
   };
-
+  if (isAuth) {
+    return (
+      <span>&nbsp;</span>
+    )
+  }
+  else {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username: </label>
@@ -52,6 +59,7 @@ const SignInPage = () => {
     </form>
   );
 };
+}
 
 export default SignInPage;
 

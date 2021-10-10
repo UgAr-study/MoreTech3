@@ -33,7 +33,7 @@ function CheckBox(props) {
     // console.log(list);
 
     const [Checked, setChecked] = useState([])
-
+/*
     const handleToggle = (value) => {
 
         var curFeat = [];
@@ -51,6 +51,35 @@ function CheckBox(props) {
 
         // console.log("Update");
         // console.log(newChecked);
+
+        setChecked(newChecked)
+        props.handleFilters(curFeat)
+        //update this checked information into Parent Component 
+
+    }
+*/
+
+    const handleToggle = (value) => {
+
+        var curFeat = [];
+
+        const currentIndex = Checked.indexOf(value._id);
+        const newChecked = [...Checked];
+
+        newChecked.map(f => {
+            curFeat.push(f);
+        })
+
+        if (currentIndex === -1) {
+            newChecked.push(value._id)
+            curFeat.push(value)
+        } else {
+            newChecked.splice(currentIndex, 1)
+            curFeat.splice(currentIndex, 1)
+        }
+
+        console.log("Update");
+        console.log(newChecked);
 
         setChecked(newChecked)
         props.handleFilters(curFeat)

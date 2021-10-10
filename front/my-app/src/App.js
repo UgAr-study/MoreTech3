@@ -13,6 +13,12 @@ import CheckBox from './CheckBox/CheckBox';
 
 import {useIsAuth} from "./context/AuthContextProvider";
 
+// Auth
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import SignInPage from './pages/SignInPage'
+import MarketplacePage from './pages/MarketplacePage';
+import FavoritePage from './pages/FavoritePage';
+
 function App() {
 
   let DataSetArrayBase = [
@@ -70,7 +76,6 @@ function App() {
     }
   ];
 
-  //const [allDataSetArr, setAllDataSet] = React.useState(DataSetArrayBase);
   const [DataSetArr, setDataSet] = React.useState(DataSetArrayBase);
 
   function updateDataSetArrBySearch(searchQuery) {
@@ -169,6 +174,14 @@ function App() {
           <Router>
             <Navbar />
           </Router>
+          <div>
+            <Switch>
+              {/* <Route path='/' component={MarketplacePage} /> */}
+              {/* <Route path='/favorite' component={FavoritePage} /> */}
+              <Route path='/sign-in' component={SignInPage} />
+            </Switch>
+          </div>
+
           
           <div className="right-col">
             {
@@ -191,13 +204,6 @@ function App() {
             <SearchBarNative updateDatasets={updateDataSetArrBySearch}/>
           </div>
       </div>
-
-      {/* IDK where */}
-      {/* <Route path={route.path}
-        exact={route.exact}
-        component={route.component}
-        key={route.path}
-      /> */}
 
       {/* Dataset array */}
       <div className="mainbody">
