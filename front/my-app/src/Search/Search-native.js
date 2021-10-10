@@ -8,9 +8,8 @@ function SearchBarNative({updateDatasets}) {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => { 
-    console.log("query change");
     setSearchQuery(query);
-    updateDatasets(query, ); 
+    updateDatasets(query); 
   }
 
   return (

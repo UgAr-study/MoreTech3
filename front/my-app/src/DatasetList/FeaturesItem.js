@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types"
+import '../App.css'
 
-function FeaturesItem({selectFeaturesFunc, dataset, feature, getMarginTop}) {
+function FeaturesItem({selectDatasetFunc, selectFeaturesFunc, dataset, feature}) {
     const classesImg = []
     const classesText = []
 
@@ -12,17 +12,18 @@ function FeaturesItem({selectFeaturesFunc, dataset, feature, getMarginTop}) {
     }
     classesText.push('fItemText')
 
-    let myMarginTop = String(getMarginTop()) + 'px';
-    let liStyle = { 
-        marginTop: myMarginTop
-    };
-
     return(
-        <li>
-            <img className={classesImg.join(' ')} onClick={() => { selectFeaturesFunc(dataset.id, feature.id); }}></img>
-            <span className={classesText.join(' ')} onClick={() => { selectFeaturesFunc(dataset.id, feature.id); }}>{feature.name}</span>
-        </li>
+        <div className="feature">
+            <div className={classesImg.join(' ')} onClick={() => { 
+                selectFeaturesFunc(dataset.id, feature.id);
+                selectDatasetFunc(dataset.id);
+            }}></div>
+            <div className={classesText.join(' ')} onClick={() => { 
+                selectFeaturesFunc(dataset.id, feature.id);
+                selectDatasetFunc(dataset.id);
+            }}>{feature.name}</div>
+        </div>
     )
 }
 
-export default FeaturesItem 
+export default FeaturesItem

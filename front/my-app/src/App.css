@@ -37,14 +37,35 @@
   }
 }
 
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0px 1fr;
+  grid-template-rows: 200px 1fr;
+  grid-template-areas:
+    "sidenav header"
+    "sidenav main"
+    "sidenav footer";
+  height: 100vh;
+}
+
+/*/////////////////////      HEADER      //////////////////////////////////////////////////////////////////*/
+
 .header {
+  grid-area: header;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
   display: flex;
   flex-wrap: wrap;
   position: relative;
   height: 200px;
   background: #0B1D37;
-  border: 1px solid #61dafb;
 }
+
 
 .header .logo {
   /* position: absolute;
@@ -54,21 +75,98 @@
 
 .header .right-col {
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   margin-left: auto;
 }
+
 .header .searchbar {
   align-self: flex-end;
   padding-bottom: 20px;
   padding-right: 20px;
-  /*padding-left: 900px;*/ 
 }
 
 .header .sign {
   display: flex;
-  /* align-self: flex-start; */
-  /* margin-right: auto; */
   padding-top: 20px;
-  padding-right: 0px; 
+  padding-right: 0px;
+}
+
+/*/////////////////////      SIDEBAR      //////////////////////////////////////////////////////////////////*/
+
+.sidenav {
+  display: flex; /* Will be hidden on mobile */
+  flex-direction: column;
+  grid-area: sidenav;
+  background-color: #394263;
+}
+
+.sidenav__list {
+  padding: 0;
+  margin-top: 85px;
+  list-style-type: none;
+}
+
+.sidenav__list-item {
+  padding: 20px 20px 20px 40px;
+  color: #ddd;
+}
+
+.sidenav__list-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+/*/////////////////////      MAINBODY      //////////////////////////////////////////////////////////////////*/
+
+.mainbody {
+  grid-area: main;
+}
+
+.main-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); /* Where the magic happens */
+  grid-auto-rows: auto;
+  grid-gap: 20px;
+  margin: 20px;
+}
+
+.overviewcard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-cards {
+  column-count: 2;
+  column-gap: 20px;
+  margin: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #82bef6;
+  margin-bottom: 20px;
+  -webkit-column-break-inside: avoid;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.featurelist {
+  display: flex;
+  height: 100%;
+  flex-flow: column wrap;
+
+  width: 80%;
+  padding-top: 20px;
+  gap: 40px;
+  overflow: auto;
+}
+
+.feature {
+  display: flex;
+  justify-content: space-between;
 }

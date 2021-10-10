@@ -11,6 +11,8 @@ import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink } from './components/Na
 import { BrowserRouter as Router } from 'react-router-dom';
 import CheckBox from './CheckBox/CheckBox';
 
+import {useIsAuth} from "./context/AuthContextProvider";
+
 function App() {
 
   let DataSetArrayBase = [
@@ -19,7 +21,6 @@ function App() {
       name: 'name1',
       features: [
         { id: 0, name: "f1", isSelected: false },
-        { id: 1, name: "f2", isSelected: false }
       ],
       id: 0,
       isSelected: false,
@@ -41,7 +42,6 @@ function App() {
       name: 'name3',
       features: [
         { id: 0, name: "f3", isSelected: false },
-        { id: 1, name: "f1", isSelected: false }
       ],
       id: 2,
       isSelected: true,
@@ -62,7 +62,6 @@ function App() {
       description: 'desc5',
       name: 'name5',
       features: [
-        { id: 0, name: "f1", isSelected: false },
         { id: 1, name: "f3", isSelected: false }
       ],
       id: 4,
@@ -71,56 +70,69 @@ function App() {
     }
   ];
 
-  const [allDataSetArr, setAllDataSet] = React.useState(DataSetArrayBase);
+  //const [allDataSetArr, setAllDataSet] = React.useState(DataSetArrayBase);
   const [DataSetArr, setDataSet] = React.useState(DataSetArrayBase);
 
-  function updateDataSetArrByName(searchQuery) {
+  function updateDataSetArrBySearch(searchQuery) {
+    let ans = [];
     if (searchQuery.length == 0) {
-      setDataSet(allDataSetArr);
+      DataSetArr.map(ds => {
+        ds.isVisible.bySearch = true;
+        ans.push(ds);
+      });
+ 
+      setDataSet(ans);
       return;
     }
 
-    var newDataSetArr = []
-    allDataSetArr.map(ds => {
-      let shouldBeAdded = false;
+    DataSetArr.map(ds => {
       if (ds.description.slice(0, searchQuery.length) == searchQuery) {
-        shouldBeAdded = true;
+        ds.isVisible.bySearch = true;
       }
-      if (shouldBeAdded) {
-        newDataSetArr.push(ds);
+      else {
+        ds.isVisible.bySearch = false;
+        console.log("dis by search" + ds.id);
       }
-      return ds;
-    })
+      ans.push(ds);
+    });
 
-    setDataSet(newDataSetArr);
-    return
+    setDataSet(ans);
   }
 
-  function updateDataSetArrByFeatures(appliedFeatures) {
-    if (appliedFeatures.length === 0) {
-      setDataSet(allDataSetArr);
+  function updateDataSetArrByFilters(appliedFeatures) {
+    let ans = []
+    if (appliedFeatures.length == 0) {
+      DataSetArr.map(ds => {
+        ds.isVisible.byFilters = true;
+        ans.push(ds);
+      });
+ 
+      setDataSet(ans);
       return;
     }
 
-    var newDataSetArr = []
-    allDataSetArr.map(ds => {
-      let shouldBeAdded = false;
+    DataSetArr.map(ds => {
+      let foundMatch = false;
       ds.features.map(f => {
         appliedFeatures.map(af => {
           if (f.name == af.name) {
-            shouldBeAdded = true;
+            foundMatch = true;
           }
           return af;
         })
         return f;
       })
-      if (shouldBeAdded) {
-        newDataSetArr.push(ds);
+      if (foundMatch) {
+        ds.isVisible.byFilters = true;
       }
+      else {
+        ds.isVisible.byFilters = false;
+      }
+      ans.push(ds);
       return ds;
     })
 
-    setDataSet(newDataSetArr);
+    setDataSet(ans);
   }
 
   function selectDataset(dataset_id) {
@@ -145,41 +157,54 @@ function App() {
     }));
   }
 
+  // For auth
+  const {isAuth, setIsAuth}=useIsAuth()
+
   return (
     <div>
       {/* Header */}
       <div className="header">
           <img className="logo" src={"VTB.png"} height={"50%"}/>
+          
           <Router>
             <Navbar />
           </Router>
           
           <div className="right-col">
+            {
+            isAuth ?
             <div className="sign">
               <NavBtn>
-                <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+                <NavBtnLink onClick={()=>setIsAuth(false)} to='/'>Log out</NavBtnLink>
+              </NavBtn>
+            </div>
+            :
+            <div className="sign">
+              <NavBtn>
+                <NavBtnLink to='/sign-in'>Sign In</NavBtnLink>
               </NavBtn>
               <NavLink to='/sign-up' activeStyle>
                 Sign Up
               </NavLink>
             </div>
-            
-            <SearchBarNative updateDatasets={updateDataSetArrByName}/>
+            }
+            <SearchBarNative updateDatasets={updateDataSetArrBySearch}/>
           </div>
-          
       </div>
 
-      {/* Auth */}
-      <Layout>
-        <AppRouter/>
-      </Layout>
+      {/* IDK where */}
+      {/* <Route path={route.path}
+        exact={route.exact}
+        component={route.component}
+        key={route.path}
+      /> */}
 
       {/* Dataset array */}
       <div className="mainbody">
           <DataSetList dataSetArr={DataSetArr} 
           selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
 
-          <CheckBox dataSetArr={allDataSetArr} handleFilters={updateDataSetArrByFeatures}/>
+          <CheckBox dataSetArr={DataSetArr} handleFilters={updateDataSetArrByFilters}/>
       </div>
     </div>
   );

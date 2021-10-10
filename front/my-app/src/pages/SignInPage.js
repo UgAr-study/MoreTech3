@@ -9,7 +9,7 @@ import {logIn} from "../redux/actions/authAction";
 import {useIsAuth} from "../context/AuthContextProvider";
 import {useState} from "react";
 
-export const LoginPage = () => {
+const SignInPage = () => {
   const {setIsAuth} = useIsAuth()
 
   const [username, setUsername] = useState("");
@@ -52,4 +52,6 @@ export const LoginPage = () => {
     </form>
   );
 };
+
+export default SignInPage;
 

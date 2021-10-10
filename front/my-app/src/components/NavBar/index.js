@@ -17,17 +17,15 @@ function Navbar () {
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to='/about' activeStyle>
-            About
+          <NavLink to='/' activeStyle>
+            Marketplace
           </NavLink>
-          <NavLink to='/services' activeStyle>
-            Services
+          <NavLink to='/favorite' activeStyle>
+            Favorite
           </NavLink>
-          <NavLink to='/contact-us' activeStyle>
-            Contact Us
+          <NavLink to='/downloaded' activeStyle>
+            Downloaded
           </NavLink>
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
       </Nav>
     </>

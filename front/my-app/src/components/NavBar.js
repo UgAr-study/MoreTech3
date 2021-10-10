@@ -29,7 +29,7 @@ export const NavBar = () => {
                         isAuth ? 
                         (<Typography onClick={()=>setIsAuth(false)}><Link to={'/'}>Logout</Link></Typography>)
                         :
-                        (<Typography><Link to={'/login'}>Login</Link></Typography>)
+                        (<Typography><Link to={'/sign-in'}>Sign In</Link></Typography>)
                     }
                 </Toolbar>
             </AppBar>
