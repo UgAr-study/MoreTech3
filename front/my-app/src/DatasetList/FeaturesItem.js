@@ -1,37 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types"
 
-function FeaturesItem(props) {
+function FeaturesItem({selectFeaturesFunc, dataset, feature, getMarginTop}) {
     const classesImg = []
     const classesText = []
 
-    function checkSelected(fName) {
-        props.dataset.features.map(f => {
-            if (f.name === fName) {
-                return f.isSelected;
-            }
-        })
-    }
-
-    if (checkSelected(props.fName)) {
+    if (feature.isSelected) {
         classesImg.push('fItemAfter')
     } else {
         classesImg.push('fItemBefore')
     }
     classesText.push('fItemText')
 
-    let myMarginTop = String(props.getMarginTop()) + 'px';
+    let myMarginTop = String(getMarginTop()) + 'px';
     let liStyle = { 
         marginTop: myMarginTop
     };
 
     return(
         <li>
-            <img className={classesImg.join(' ')} onClick={() => {
-                props.selectFeaturesFunc(props.fName);
-                console.log('aaa'); // not working
-            }}></img>
-            <span className={classesText.join(' ')} >{props.fName}</span>
+            <img className={classesImg.join(' ')} onClick={() => { selectFeaturesFunc(dataset.id, feature.id); }}></img>
+            <span className={classesText.join(' ')} onClick={() => { selectFeaturesFunc(dataset.id, feature.id); }}>{feature.name}</span>
         </li>
     )
 }

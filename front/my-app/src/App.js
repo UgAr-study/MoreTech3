@@ -7,17 +7,9 @@ import { View, StyleSheet } from "react-native";
 import Layout from "./components/Layout";
 import {AppRouter} from "./components/AppRouter";
 import Navbar from './components/NavBar/index';
+import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink } from './components/NavBar/NavBarElements';
 import { BrowserRouter as Router } from 'react-router-dom';
-import {
-  Nav,
-  NavLink,
-  Bars,
-  NavMenu,
-  NavBtn,
-  NavBtnLink
-} from './components/NavBar/NavBarElements';
 import CheckBox from './CheckBox/CheckBox';
-
 
 function App() {
 
@@ -154,25 +146,26 @@ function App() {
     setDataSet(newDataSetArr);
   }
 
-  function selectDataset(id) {
-  setDataSet(DataSetArr.map(dataset => {
-      if (dataset.id === id) {
-        dataset.isSelected = !dataset.isSelected; 
+  function selectDataset(dataset_id) {
+    setDataSet(DataSetArr.map(ds => {
+      if (ds.id === dataset_id) {
+        ds.isSelected = !ds.isSelected; 
       }
-      return dataset;
+      return ds;
     }));
   }
 
-  function selectFeatures(fName) {
-    DataSetArr.map(ds => {
-      ds.features.map(f => {
-        if (f.name === fName) {
-          f.isSelected = !f.isSelected;
-          console.log(f.name);
-        }
-        return f;
-      })
-    })
+  function selectFeatures(dataset_id, feature_id) {
+    setDataSet(DataSetArr.map(ds => {
+      if (ds.id === dataset_id) {
+        ds.features.map(f => {
+          if (f.id === feature_id) {
+            f.isSelected = !f.isSelected;
+          }
+        })
+      }
+      return ds;
+    }));
   }
 
   return (
@@ -180,8 +173,6 @@ function App() {
       {/* Header */}
       <div className="header">
           <img className="logo" src={"VTB.png"} height={"50%"}/>
-          
-
           <Router>
             <Navbar />
           </Router>
@@ -205,6 +196,7 @@ function App() {
       <Layout>
         <AppRouter/>
       </Layout>
+
       {/* Dataset array */}
       <div className="mainbody">
           <DataSetList dataSetArr={DataSetArr} 
