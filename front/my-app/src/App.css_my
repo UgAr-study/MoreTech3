@@ -37,6 +37,8 @@
   }
 }
 
+
+
 /*///////////////////////////////////////////////////////////////////////////////////////*/
 
 .grid-container {
@@ -61,13 +63,14 @@
   flex-wrap: wrap;
   position: relative;
   height: 200px;
-  background: #0b1d37;
+  background: #0B1D37;
 }
+
 
 .header .logo {
   /* position: absolute;
-    top: 0px;
-    left: 0px; */
+  top: 0px;
+  left: 0px; */
 }
 
 .header .right-col {
@@ -119,22 +122,11 @@
 
 .mainbody {
   grid-area: main;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  grid-template-areas: "forfilters mainbody";
-  height: 100%;
-}
-
-.datas {
-  grid-area: mainbody;
 }
 
 .main-overview {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(265px, 1fr)
-  ); /* Where the magic happens */
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); /* Where the magic happens */
   grid-auto-rows: auto;
   grid-gap: 20px;
   margin: 20px;
@@ -177,14 +169,4 @@
 .feature {
   display: flex;
   justify-content: space-between;
-}
-
-.auth {
-    color: white;
-    margin-left: 200px;
-    align-self: flex-start;
-    padding-top: 20px;
-    background-color: rgb(42, 119, 192);
-    border-radius: 5px;
-    padding: 10px;
 }

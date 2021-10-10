@@ -14,7 +14,7 @@ import CheckBox from './CheckBox/CheckBox';
 import {useIsAuth} from "./context/AuthContextProvider";
 
 // Auth
-import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import { useLocation, Switch, Route, Link, Redirect } from 'react-router-dom';
 import SignInPage from './pages/SignInPage'
 import MarketplacePage from './pages/MarketplacePage';
 import FavoritePage from './pages/FavoritePage';
@@ -165,20 +165,58 @@ function App() {
   // For auth
   const {isAuth, setIsAuth}=useIsAuth()
 
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <div>
       {/* Header */}
       <div className="header">
           <img className="logo" src={"VTB.png"} height={"50%"}/>
-          
+          {
+            isAuth ?
           <Router>
-            <Navbar />
+            <Nav>
+              <NavLink to='/'>
+
+              </NavLink>
+              <Bars />
+              <NavMenu>
+                <NavLink to='/' activeStyle>
+                  Marketplace
+                </NavLink>
+                <NavLink to='/favorite' activeStyle>
+                  Favorite
+                </NavLink>
+                <NavLink to='/downloaded' activeStyle>
+                  Downloaded
+                </NavLink>
+              </NavMenu>
+            </Nav>
           </Router>
-          <div>
+          :
+          <Router>
+            <Nav>
+              <NavLink to='/'>
+
+              </NavLink>
+              <Bars />
+              <NavMenu>
+                <NavLink to='/' activeStyle>
+                  Marketplace
+                </NavLink>
+                <NavLink to='/contact' activeStyle>
+                  Contact Us
+                </NavLink>
+              </NavMenu>
+            </Nav>
+          </Router>
+          }
+          <div className="auth">
             <Switch>
-              {/* <Route path='/' component={MarketplacePage} /> */}
-              {/* <Route path='/favorite' component={FavoritePage} /> */}
-              <Route path='/sign-in' component={SignInPage} />
+              {/* <Route exact path='/' component={MarketplacePage} />
+              <Route exact path='/favorite' component={FavoritePage} /> */}
+              <Route exact path='/sign-in' component={SignInPage} />
             </Switch>
           </div>
 
@@ -206,12 +244,19 @@ function App() {
       </div>
 
       {/* Dataset array */}
-      <div className="mainbody">
+      <main className="mainbody">
+          <CheckBox dataSetArr={DataSetArr} handleFilters={updateDataSetArrByFilters}/>
+          <div className="datas">
           <DataSetList dataSetArr={DataSetArr} 
           selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
+          </div>
+      </main>
+      {/* <div className="mainbody">
+          <DataSetList dataSetArr={DataSetArr} 
+              selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
 
           <CheckBox dataSetArr={DataSetArr} handleFilters={updateDataSetArrByFilters}/>
-      </div>
+      </div> */}
     </div>
   );
 }

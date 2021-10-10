@@ -32,9 +32,7 @@ const SignInPage = () => {
     }
   };
   if (isAuth) {
-    return (
-      <span>&nbsp;</span>
-    )
+    return (<p>Welcome, Oleg!</p>);
   }
   else {
   return (
@@ -47,7 +45,7 @@ const SignInPage = () => {
         onChange={({ target }) => setUsername(target.value)}
       />
       <div>
-        <label htmlFor="password">Password: </label>
+        <label htmlFor="password">Password:  </label>
         <input
           type="password"
           value={password}

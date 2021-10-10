@@ -1,8 +1,11 @@
 import React from 'react';
+import DataSetList from '../DatasetList/DataSetList'
 
 const MarketplacePage = () => {
     return (
-        <h1>Marketplace</h1>
+        <div>
+            <h1>Marketplace</h1>
+        </div>
     );
 };
 
