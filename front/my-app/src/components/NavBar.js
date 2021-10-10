@@ -12,7 +12,7 @@ export const NavBar = () => {
 
 
     const {isAuth, setIsAuth}=useIsAuth()
-    console.log(isAuth, setIsAuth)
+    //console.log(isAuth, setIsAuth)
 
     return (
         <Box sx={{flexGrow: 1}}>

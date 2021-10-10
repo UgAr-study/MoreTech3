@@ -16,7 +16,7 @@ function CheckBox(props) {
         })
     })
 
-    console.log(listAll);
+    // console.log(listAll);
 
 
     listAll.map(f1 => {
@@ -30,7 +30,7 @@ function CheckBox(props) {
             list.push(f1)
         }
     })
-    console.log(list);
+    // console.log(list);
 
     const [Checked, setChecked] = useState([])
 
@@ -49,8 +49,8 @@ function CheckBox(props) {
             curFeat.splice(currentIndex, 1)
         }
 
-        console.log("Update");
-        console.log(newChecked);
+        // console.log("Update");
+        // console.log(newChecked);
 
         setChecked(newChecked)
         props.handleFilters(curFeat)

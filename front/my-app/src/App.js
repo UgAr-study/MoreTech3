@@ -13,26 +13,28 @@ import CheckBox from './CheckBox/CheckBox';
 
 function App() {
 
-  const [DataSetArr, setDataSet] = React.useState([
+  let DataSetArrayBase = [
     {
-      description: 'desc1',
+      description: 'aaa',
       name: 'name1',
       features: [
         { id: 0, name: "f1", isSelected: false },
         { id: 1, name: "f2", isSelected: false }
       ],
       id: 0,
-      isSelected: false
+      isSelected: false,
+      isVisible: { bySearch: true, byFilters: true },
     },
     {
-      description: 'desc2',
+      description: 'bbb',
       name: 'name2',
       features: [
         { id: 0, name: "f3", isSelected: false },
         { id: 1, name: "f2", isSelected: false }
       ],
       id: 1,
-      isSelected: false
+      isSelected: false,
+      isVisible: { bySearch: true, byFilters: true },
     },
     {
       description: 'desc3',
@@ -42,7 +44,8 @@ function App() {
         { id: 1, name: "f1", isSelected: false }
       ],
       id: 2,
-      isSelected: true
+      isSelected: true,
+      isVisible: { bySearch: true, byFilters: true },
     },
     {
       description: 'desc4',
@@ -52,7 +55,8 @@ function App() {
         { id: 1, name: "f1", isSelected: false }
       ],
       id: 3,
-      isSelected: false
+      isSelected: false,
+      isVisible: { bySearch: true, byFilters: true },
     },
     {
       description: 'desc5',
@@ -62,87 +66,60 @@ function App() {
         { id: 1, name: "f3", isSelected: false }
       ],
       id: 4,
-      isSelected: false
+      isSelected: false,
+      isVisible: { bySearch: true, byFilters: true },
     }
-  ]);
+  ];
 
+  const [allDataSetArr, setAllDataSet] = React.useState(DataSetArrayBase);
+  const [DataSetArr, setDataSet] = React.useState(DataSetArrayBase);
 
-  const [allDataSetArr, setAllDataSet] = React.useState([
-    {
-      description: 'desc1',
-      name: 'name1',
-      features: [
-        { id: 0, name: "f1", isSelected: false },
-        { id: 1, name: "f2", isSelected: false }
-      ],
-      id: 0,
-      isSelected: false
-    },
-    {
-      description: 'desc2',
-      name: 'name2',
-      features: [
-        { id: 0, name: "f3", isSelected: false },
-        { id: 1, name: "f2", isSelected: false }
-      ],
-      id: 1,
-      isSelected: false
-    },
-    {
-      description: 'desc3',
-      name: 'name3',
-      features: [
-        { id: 0, name: "f3", isSelected: false },
-        { id: 1, name: "f1", isSelected: false }
-      ],
-      id: 2,
-      isSelected: true
-    },
-    {
-      description: 'desc4',
-      name: 'name4',
-      features: [
-        { id: 0, name: "f2", isSelected: false },
-        { id: 1, name: "f1", isSelected: false }
-      ],
-      id: 3,
-      isSelected: false
-    },
-    {
-      description: 'desc5',
-      name: 'name5',
-      features: [
-        { id: 0, name: "f1", isSelected: false },
-        { id: 1, name: "f3", isSelected: false }
-      ],
-      id: 4,
-      isSelected: false
-    }
-  ]);
-
-  function updateDataSetArr(list) {
-    if (list.length === 0) {
+  function updateDataSetArrByName(searchQuery) {
+    if (searchQuery.length == 0) {
       setDataSet(allDataSetArr);
-      return
+      return;
     }
-    console.log("list");
-    console.log(list);
 
     var newDataSetArr = []
-    DataSetArr.map(dataset => {
-      dataset.features.map(fds => {
-        list.map(f => {
-          if (fds.name === f.name) {
-            newDataSetArr.push(dataset)
-            return f;
-          }
-        })
-        return fds;
-      })
-      return dataset;
+    allDataSetArr.map(ds => {
+      let shouldBeAdded = false;
+      if (ds.description.slice(0, searchQuery.length) == searchQuery) {
+        shouldBeAdded = true;
+      }
+      if (shouldBeAdded) {
+        newDataSetArr.push(ds);
+      }
+      return ds;
     })
-    console.log("New Ds");
-    console.log(newDataSetArr);
+
+    setDataSet(newDataSetArr);
+    return
+  }
+
+  function updateDataSetArrByFeatures(appliedFeatures) {
+    if (appliedFeatures.length === 0) {
+      setDataSet(allDataSetArr);
+      return;
+    }
+
+    var newDataSetArr = []
+    allDataSetArr.map(ds => {
+      let shouldBeAdded = false;
+      ds.features.map(f => {
+        appliedFeatures.map(af => {
+          if (f.name == af.name) {
+            shouldBeAdded = true;
+          }
+          return af;
+        })
+        return f;
+      })
+      if (shouldBeAdded) {
+        newDataSetArr.push(ds);
+      }
+      return ds;
+    })
+
     setDataSet(newDataSetArr);
   }
 
@@ -187,7 +164,7 @@ function App() {
               </NavLink>
             </div>
             
-            <SearchBarNative/>
+            <SearchBarNative updateDatasets={updateDataSetArrByName}/>
           </div>
           
       </div>
@@ -201,7 +178,8 @@ function App() {
       <div className="mainbody">
           <DataSetList dataSetArr={DataSetArr} 
           selectDatasetFunc={selectDataset} selectFeaturesFunc={selectFeatures}/>
-          <CheckBox dataSetArr={allDataSetArr}  handleFilters={updateDataSetArr}/>
+
+          <CheckBox dataSetArr={allDataSetArr} handleFilters={updateDataSetArrByFeatures}/>
       </div>
     </div>
   );

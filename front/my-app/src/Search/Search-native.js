@@ -4,10 +4,14 @@ import { Searchbar } from '../../node_modules/react-native-paper';
 import { View, StyleSheet } from "react-native";
 import { Card } from 'react-native-paper';
 
-const SearchBarNative = () => {
+function SearchBarNative({updateDatasets}) {
   const [searchQuery, setSearchQuery] = React.useState('');
 
-  const onChangeSearch = query => setSearchQuery(query);
+  const onChangeSearch = query => { 
+    console.log("query change");
+    setSearchQuery(query);
+    updateDatasets(query, ); 
+  }
 
   return (
     <div className="searchbar">
